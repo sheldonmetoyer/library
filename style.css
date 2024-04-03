@@ -23,3 +23,15 @@ header {
     margin: auto;
     justify-content: space-around;
 }
+
+.library-shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.card {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
