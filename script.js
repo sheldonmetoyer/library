@@ -33,28 +33,54 @@ function displayLibrary() {
 
     libraryShelf.innerHTML = '';
   
-    myLibrary.forEach( (item) => {
-        const newDiv = document.createElement('div');
-        const titlePara = document.createElement('p')
-        const authorPara = document.createElement('p')
-        const pagesPara = document.createElement('p')
-        const isReadPara = document.createElement('p')
+    myLibrary.forEach( (item, index) => {
+
+        const newestdiv = document.createElement('div');
+        for (const prop in item) {
+            const newPara = document.createElement('p');
+            // newPara.textContent = prop + ": " + item[prop];
+            if(prop === "title") {
+                newPara.textContent = `Title: ${item[prop]}`;
+            } else if (prop === "author") {
+                newPara.textContent = `Author: ${item[prop]}`;
+            } else if (prop === "num_pages") {
+                newPara.textContent = `Number of Pages: ${item[prop]}`;
+            } else newPara.textContent = `Read: ${item[prop]}`;
+            newestdiv.appendChild(newPara);
+        }
+
+        newestdiv.classList.add("card");
+        libraryShelf.appendChild(newestdiv);
+
+        console.log(index);
+
+        //this is the first way I did it. looping seems to be the more professional way to do it
+
+        // const newDiv = document.createElement('div');
+        // const titlePara = document.createElement('p')
+        // const authorPara = document.createElement('p')
+        // const pagesPara = document.createElement('p')
+        // const isReadPara = document.createElement('p')
         
-        titlePara.textContent = `Title: ${item.title}`;
-        authorPara.textContent = `Author: ${item.author}`;
-        pagesPara.textContent = `Number of pages: ${item.num_pages}`;
-        isReadPara.textContent = `Read: ${item.isRead}`;
+        // titlePara.textContent = `Title: ${item.title}`;
+        // authorPara.textContent = `Author: ${item.author}`;
+        // pagesPara.textContent = `Number of pages: ${item.num_pages}`;
+        // isReadPara.textContent = `Read: ${item.isRead}`;
 
-        newDiv.appendChild(titlePara);
-        newDiv.appendChild(authorPara);
-        newDiv.appendChild(pagesPara);
-        newDiv.appendChild(isReadPara);
+        // newDiv.appendChild(titlePara);
+        // newDiv.appendChild(authorPara);
+        // newDiv.appendChild(pagesPara);
+        // newDiv.appendChild(isReadPara);
 
+        // newDiv.classList.add('card');
 
-        newDiv.classList.add('card');
+        // libraryShelf.appendChild(newDiv);
+    
 
+    
+        
 
-        libraryShelf.appendChild(newDiv);
+       
 
 
        
