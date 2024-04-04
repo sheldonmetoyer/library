@@ -2,17 +2,9 @@ const myLibrary = [];
 const addBookBtn = document.querySelector('.add-book');
 const libraryShelf = document.querySelector('.library-shelf');
 const dialog = document.querySelector('dialog');
-const dialogButton = document.querySelector(".show-dialog");
-const hideDialog = document.querySelector(".hide-dialog");
 const submitBtn = document.querySelector(".submit");
+const form = document.querySelector('form');
 
-dialogButton.addEventListener('click', () => {
-    dialog.showModal();
-})
-
-hideDialog.addEventListener('click', () => {
-    dialog.close();
-})
 
 function Book(title, author, num_pages, isRead) {
     this.title = title;
@@ -29,14 +21,19 @@ myLibrary.push(second_book);
 
 
 function addBookToLibrary() {
-    let bookTitle = prompt("What is the title of the book?");
-    let bookAuthor = prompt("Who is the author of the book?");
-    let num_pages = prompt("How many pages are in the book?");
-    let isRead = prompt("Have you read the book");
+    // let bookTitle = prompt("What is the title of the book?");
+    // let bookAuthor = prompt("Who is the author of the book?");
+    // let num_pages = prompt("How many pages are in the book?");
+    // let isRead = prompt("Have you read the book");
 
-    const newBook = new Book(bookTitle, bookAuthor, num_pages, isRead);
+    // const newBook = new Book(bookTitle, bookAuthor, num_pages, isRead);
+    event.preventDefault();
 
+    const newBook = new Book (form.bookTitle.value, form.bookAuthor.value, form.num_pages.value, form.isRead.value);
+
+    
     myLibrary.push(newBook);
+    dialog.close();
 
     displayLibrary();
 }
@@ -90,22 +87,12 @@ function displayLibrary() {
 
 displayLibrary();
 
-function myFunc() {
-    console.log("Event Prevented");
-    event.preventDefault();
-}
 
+submitBtn.addEventListener('click', addBookToLibrary);
 
-
-
-       
-
-
-
-
-submitBtn.addEventListener('click', myFunc);
-
-addBookBtn.addEventListener('click', addBookToLibrary);
+addBookBtn.addEventListener('click', () => {
+    dialog.showModal();
+});
 
 
 
