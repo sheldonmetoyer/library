@@ -1,6 +1,18 @@
 const myLibrary = [];
 const addBookBtn = document.querySelector('.add-book');
 const libraryShelf = document.querySelector('.library-shelf');
+const dialog = document.querySelector('dialog');
+const dialogButton = document.querySelector(".show-dialog");
+const hideDialog = document.querySelector(".hide-dialog");
+const submitBtn = document.querySelector(".submit");
+
+dialogButton.addEventListener('click', () => {
+    dialog.showModal();
+})
+
+hideDialog.addEventListener('click', () => {
+    dialog.close();
+})
 
 function Book(title, author, num_pages, isRead) {
     this.title = title;
@@ -52,8 +64,6 @@ function displayLibrary() {
         newestdiv.classList.add("card");
         libraryShelf.appendChild(newestdiv);
 
-        console.log(index);
-
         //this is the first way I did it. looping seems to be the more professional way to do it
 
         // const newDiv = document.createElement('div');
@@ -75,21 +85,15 @@ function displayLibrary() {
         // newDiv.classList.add('card');
 
         // libraryShelf.appendChild(newDiv);
-    
-
-    
-        
-
-       
-
-
-       
     });
 }
 
 displayLibrary();
 
-
+function myFunc() {
+    console.log("Event Prevented");
+    event.preventDefault();
+}
 
 
 
@@ -99,7 +103,7 @@ displayLibrary();
 
 
 
-
+submitBtn.addEventListener('click', myFunc);
 
 addBookBtn.addEventListener('click', addBookToLibrary);
 
