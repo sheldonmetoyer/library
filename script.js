@@ -6,7 +6,6 @@ const submitBtn = document.querySelector(".submit");
 const form = document.querySelector('form');
 const read = document.querySelector('#read');
 
-
 function Book(title, author, num_pages, isRead) {
     this.title = title;
     this.author = author;
@@ -33,6 +32,7 @@ function addBookToLibrary() {
     displayLibrary();
 }
 
+
 function displayLibrary() {
 
     libraryShelf.innerHTML = '';
@@ -43,7 +43,6 @@ function displayLibrary() {
         const readDiv = document.createElement('div');
         for (const prop in item) {
             const newPara = document.createElement('p');
-            // newPara.textContent = prop + ": " + item[prop];
             if(prop === "title") {
                 newPara.textContent = `Title: ${item[prop]}`;
             } else if (prop === "author") {
@@ -66,6 +65,7 @@ function displayLibrary() {
         addDeleteBtn(newestdiv);
 
         newestdiv.classList.add("card");
+        newestdiv.dataset.number = index;
         libraryShelf.appendChild(newestdiv);
 
     });
@@ -78,8 +78,16 @@ function addDeleteBtn(bookCard) {
 
     createDeleteBtn.textContent = "Delete";
 
+    createDeleteBtn.addEventListener('click', () => {
+        myLibrary.splice(bookCard.dataset.number, 1);
+
+        displayLibrary();
+    })
+
     bookCard.appendChild(createDeleteBtn);
 }
+
+
 
 displayLibrary();
 
