@@ -4,6 +4,7 @@ const libraryShelf = document.querySelector('.library-shelf');
 const dialog = document.querySelector('dialog');
 const submitBtn = document.querySelector(".submit");
 const form = document.querySelector('form');
+const read = document.querySelector('#read');
 
 
 function Book(title, author, num_pages, isRead) {
@@ -13,23 +14,17 @@ function Book(title, author, num_pages, isRead) {
     this.isRead = isRead;
 }
 
-const first_book = new Book("Tale of Two Cities", "Charles Dickens", 293, "Yes");
-const second_book = new Book("Animal Farms", "George Orwell", 303, "No");
+const first_book = new Book("Tale of Two Cities", "Charles Dickens", 293, true);
+const second_book = new Book("Animal Farms", "George Orwell", 303, false);
 
-myLibrary.push(first_book); 
-myLibrary.push(second_book);
+myLibrary.push(first_book, second_book); 
+
 
 
 function addBookToLibrary() {
-    // let bookTitle = prompt("What is the title of the book?");
-    // let bookAuthor = prompt("Who is the author of the book?");
-    // let num_pages = prompt("How many pages are in the book?");
-    // let isRead = prompt("Have you read the book");
-
-    // const newBook = new Book(bookTitle, bookAuthor, num_pages, isRead);
     event.preventDefault();
 
-    const newBook = new Book (form.bookTitle.value, form.bookAuthor.value, form.num_pages.value, form.isRead.value);
+    const newBook = new Book (form.bookTitle.value, form.bookAuthor.value, form.num_pages.value, form.isRead.checked);
 
     
     myLibrary.push(newBook);
@@ -45,6 +40,7 @@ function displayLibrary() {
     myLibrary.forEach( (item, index) => {
 
         const newestdiv = document.createElement('div');
+        const readDiv = document.createElement('div');
         for (const prop in item) {
             const newPara = document.createElement('p');
             // newPara.textContent = prop + ": " + item[prop];
@@ -54,35 +50,35 @@ function displayLibrary() {
                 newPara.textContent = `Author: ${item[prop]}`;
             } else if (prop === "num_pages") {
                 newPara.textContent = `Number of Pages: ${item[prop]}`;
-            } else newPara.textContent = `Read: ${item[prop]}`;
+            } else if (item[prop] === true) {
+                readDiv.textContent = `Read!`;
+                readDiv.classList.add('read')
+            } else if (item[prop] === false) {
+                readDiv.textContent = `Not Read!`;
+                readDiv.classList.add('not-read')
+            }
+            
             newestdiv.appendChild(newPara);
+            newestdiv.appendChild(readDiv);
+            
         }
+
+        addDeleteBtn(newestdiv);
 
         newestdiv.classList.add("card");
         libraryShelf.appendChild(newestdiv);
 
-        //this is the first way I did it. looping seems to be the more professional way to do it
-
-        // const newDiv = document.createElement('div');
-        // const titlePara = document.createElement('p')
-        // const authorPara = document.createElement('p')
-        // const pagesPara = document.createElement('p')
-        // const isReadPara = document.createElement('p')
-        
-        // titlePara.textContent = `Title: ${item.title}`;
-        // authorPara.textContent = `Author: ${item.author}`;
-        // pagesPara.textContent = `Number of pages: ${item.num_pages}`;
-        // isReadPara.textContent = `Read: ${item.isRead}`;
-
-        // newDiv.appendChild(titlePara);
-        // newDiv.appendChild(authorPara);
-        // newDiv.appendChild(pagesPara);
-        // newDiv.appendChild(isReadPara);
-
-        // newDiv.classList.add('card');
-
-        // libraryShelf.appendChild(newDiv);
     });
+}
+
+function addDeleteBtn(bookCard) {
+    const createDeleteBtn = document.createElement('button');
+
+    createDeleteBtn.classList.add("deleteBtn")
+
+    createDeleteBtn.textContent = "Delete";
+
+    bookCard.appendChild(createDeleteBtn);
 }
 
 displayLibrary();
@@ -93,8 +89,3 @@ submitBtn.addEventListener('click', addBookToLibrary);
 addBookBtn.addEventListener('click', () => {
     dialog.showModal();
 });
-
-
-
-
-
