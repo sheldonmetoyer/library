@@ -50,11 +50,11 @@ function displayLibrary() {
             } else if (prop === "num_pages") {
                 newPara.textContent = `Number of Pages: ${item[prop]}`;
             } else if (item[prop] === true) {
-                readDiv.textContent = `Read!`;
                 readDiv.classList.add('read')
+                readDiv.addEventListener('click', toggleRead);
             } else if (item[prop] === false) {
-                readDiv.textContent = `Not Read!`;
                 readDiv.classList.add('not-read')
+                readDiv.addEventListener('click', toggleRead);
             }
             
             newestdiv.appendChild(newPara);
@@ -85,6 +85,17 @@ function addDeleteBtn(bookCard) {
     })
 
     bookCard.appendChild(createDeleteBtn);
+}
+
+function toggleRead() {
+    // console.log(this.classList);
+    if (this.classList.value === 'read') {
+        this.classList.toggle('read');
+        this.classList.add('not-read');
+    }else if (this.classList.value === 'not-read') {
+        this.classList.toggle('not-read');
+        this.classList.add('read');
+    }
 }
 
 
