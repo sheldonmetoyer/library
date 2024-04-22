@@ -10,17 +10,28 @@
 <body>
     <dialog>
         <form action="" method="post">
-            <label for="book-title">Title: </label>
-            <input type="text" id="book-title" name="bookTitle">
+            <legend>Book to be Added</legend>
 
-            <label for="book-author">Author: </label>
-            <input type="text" id="book-author" name="bookAuthor">
+            <div class="form-input">
+                <label for="book-title">Title: </label>
+                <input type="text" id="book-title" name="bookTitle">
+            </div>
 
-            <label for="page-num">Number of pages: </label>
-            <input type="number" id="page-num" name="num_pages">
+            <div class="form-input">
+                <label for="book-author">Author: </label>
+                <input type="text" id="book-author" name="bookAuthor">
+            </div>
 
-            <label for="read">Read?</label>
-            <input type="checkbox" id="read" name="isRead">
+            <div>
+                <label for="page-num"># of pages: </label>
+                <input type="number" id="page-num" name="num_pages">
+            </div>
+
+            <div class="form-input">
+                <label for="read">Read?</label>
+                <input type="checkbox" id="read" name="isRead">
+            </div>
+
             <button type="submit" class="submit">Add Book</button>
         </form>
     </dialog>

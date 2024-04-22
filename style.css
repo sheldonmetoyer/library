@@ -108,3 +108,21 @@ header > h1 {
     margin: auto;
     max-width: 1400px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 100px 50px;
+    gap: 40px;
+}
+
+.form-input {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 40px; */
+}
+
+.form-input input {
+    align-self: flex-end;
+    justify-self: flex-end;
+}

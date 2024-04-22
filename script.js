@@ -87,15 +87,18 @@ function addDeleteBtn(bookCard) {
     bookCard.appendChild(createDeleteBtn);
 }
 
-function toggleRead() {
-    // console.log(this.classList);
-    if (this.classList.value === 'read') {
-        this.classList.toggle('read');
-        this.classList.add('not-read');
-    }else if (this.classList.value === 'not-read') {
-        this.classList.toggle('not-read');
-        this.classList.add('read');
-    }
+function toggleRead(event) {
+    const clickedBookCard = event.currentTarget.parentElement;
+    const bookIndex = clickedBookCard.dataset.number;
+    const book = myLibrary[bookIndex];
+
+    console.log(event);
+    console.log(clickedBookCard);
+
+    book.isRead = !book.isRead;
+
+    displayLibrary();
+    
 }
 
 
